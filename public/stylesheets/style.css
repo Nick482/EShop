@@ -1,0 +1,47 @@
+#search {
+    border: 2px;
+    border: solid;
+    color: mediumblue;
+    margin-top: 20px;
+    margin-right: 0;
+    width: 256px;
+    padding-bottom: 5px;
+}
+#mainLogo {
+    width: 256px;
+    height: 256px;
+}
+.search {
+    width: 256px;
+}
+.searchField#name {
+    height: 18px;
+}
+.searchField {
+    height: 100px;
+}
+.SB {
+    width: 256px;
+    border: 0;
+}
+#SS {
+    border: 0;
+    position: relative;
+    left: 100px;
+}
+#NSD {
+    font-size: 12px;
+}
+#menu {
+    position: absolute;
+    top: 7px;
+    left: 280px;
+    height: 256px;
+    width: 1000px;
+    border: solid;
+    border-color: red;
+}
+#menu p {
+    margin-left: 43%;
+    margin-top: 10%;
+}
