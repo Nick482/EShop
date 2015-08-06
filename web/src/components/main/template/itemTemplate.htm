@@ -1,0 +1,5 @@
+<div class="items" id="<%= model.id %>">
+    <img id="pic" src="<%= 'images/' + model.image.split('/').pop() %>">
+    <p id="fullName"><%= model.maker + ' ' + model.name %></p>
+    <p id="itemPrice">$<%= model.price %></p>
+</div>

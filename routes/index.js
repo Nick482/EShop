@@ -33,4 +33,13 @@ router.post('/add', function(req, res) {
     });
 });
 
+router.post('/selection', function(req, res){
+        console.log(req.body.id);
+        Item.find({where: {id : req.body.id}}).then(function(item){
+            res.send(item)
+        })
+    }
+
+);
+
 module.exports = router;

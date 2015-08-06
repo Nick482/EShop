@@ -15,7 +15,8 @@ define(function(require){
     var ItemCollection = Backbone.View.extend({
 
         events: {
-            "click .item": "_onItemEvent",
+//            "click .item": "_onItemEvent",
+            "click .item": "clicked",
             "dblclick .item": "_onItemEvent",
             "mouseenter .item": "_onItemEvent",
             "mouseleave .item": "_onItemEvent"
@@ -101,6 +102,10 @@ define(function(require){
 
         removeItem: function(){
             // TODO
+        },
+
+        clicked: function(event){
+            this.trigger("clicked", this, event)
         },
 
         resetCollection: function(items){

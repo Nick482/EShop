@@ -8,8 +8,11 @@ define(function(require){
         Logo = require('components/logo/Logo'),
         Menu  = require('components/menu/MainMenu'),
         ItemCollection = require('components/itemCollection/ItemCollection'),
-        itemTemplate = require('text!components/item/template/itemTemplate.htm'),
-        itemModel = require('components/main/model/itemModel');
+        itemTemplate = require('text!components/main/template/itemTemplate.htm'),
+        itemModel = require('components/main/model/itemModel'),
+        Selected = require('components/selected/Selected');
+
+        require('jquery.ui');
 
     var Main = Backbone.View.extend({
 
@@ -22,7 +25,7 @@ define(function(require){
     this.menu = new Menu();
     this.itemCollection = new ItemCollection({
             model: itemModel,
-            itemTemplate: "<div></div>",
+            itemTemplate: itemTemplate,
             itemAdditionalCssClass: "gridItem"
         });
     this.render();
@@ -53,7 +56,29 @@ define(function(require){
         });
         this.listenTo(this.search, "keyup", function(){
             this.searchCond.nameCond = event.target.value;
-        })
+        });
+        this.listenTo(this.itemCollection, "clicked", function(){
+            var id = "";
+            if (event.target.parentElement.id){
+                id = event.target.parentElement.id
+            }
+            else {
+                id = event.target.id
+        }
+            $.post("/selection", {id : id}, function(data){
+                if($("#selectedItem")){
+                    $("#selectedItem").remove();
+                }
+                $('.itemsCollection').animate({width: 'toggle'}, 1000);
+                self.selected = new Selected(data);
+                $('#selectedItem').hide();
+                $('#selectedItem').toggle("slide", { direction: "right" }, 1000);
+                self.listenTo(self.selected, "backToSearch", function(){
+                    $('#selectedItem').toggle("slide", { direction: "right" }, 1000);
+                    $('.itemsCollection').animate({width: 'toggle'}, 1000);
+                })
+            })
+        });
     },
     render: function(){
         $("body").append(this.$el);

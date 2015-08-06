@@ -6,6 +6,7 @@ require.config({
         text: 'lib/requirejs-text/text',
         backbone: 'lib/backbone/backbone',
         css: 'lib/require-css/css',
-        validation: "lib/backbone-validation/dist/backbone-validation-amd"
+        validation: "lib/backbone-validation/dist/backbone-validation-amd",
+        "jquery.ui": 'lib/jqueryui/jquery-ui'
     }
 });

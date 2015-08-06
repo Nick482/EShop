@@ -45,3 +45,57 @@
     margin-left: 43%;
     margin-top: 10%;
 }
+.itemsCollection {
+    position: absolute;
+    top: 320px;
+    left: 280px;
+    border: solid;
+    border-color: lime;
+    width: 1000px;
+    background-color: #ffffff;
+}
+.gridItem {
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+}
+img#pic {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    left: 15px;
+}
+#itemPrice {
+    position: relative;
+    top: -72px;
+    left: 130px;
+    color: lime;
+}
+#fullName {
+    position: relative;
+    top: -15px;
+    left: 46px;
+}
+#selectedItem {
+    position: absolute;
+    top: 320px;
+    left: 280px;
+    border: solid;
+    border-color: lime;
+    width: 1000px;
+    background-color: #ffffff;
+    height: 400px;
+}
+#selectedImage{
+    width: 350px;
+    height: 350px;
+}
+#selectedName, #selectedMaker, #selectedPrice{
+    position: relative;
+    top: -350px;
+    left: 360px;
+    color: limegreen;
+    font-size: 12px;
+    font-style: italic;
+}
+
