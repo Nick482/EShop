@@ -87,15 +87,40 @@ img#pic {
     height: 400px;
 }
 #selectedImage{
-    width: 350px;
-    height: 350px;
-}
-#selectedName, #selectedMaker, #selectedPrice{
     position: relative;
-    top: -350px;
-    left: 360px;
+    left: 130px;
+    width: 350px;
+    height: 350px
+}
+#selectedName {
+    position: relative;
+    left: 343px;
+    top: -28px;
     color: limegreen;
-    font-size: 12px;
+    font-size: 30px;
     font-style: italic;
+}
+#selectedMaker {
+    position: relative;
+    left: 367px;
+    top: -146px;
+    color: limegreen;
+    font-size: 30px;
+    font-style: italic;
+}
+#selectedPrice {
+    position: relative;
+    left: 157px;
+    top: -152px;
+    color: limegreen;
+    font-size: 30px;
+    font-style: italic;
+}
+#back {
+    position: relative;
+    top: -416px;
+    height: 98px;
+    width: 40px;
+    border: 0
 }
 
