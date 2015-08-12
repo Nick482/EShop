@@ -119,8 +119,54 @@ img#pic {
 #back {
     position: relative;
     top: -416px;
+    left: -142px;
     height: 98px;
     width: 40px;
     border: 0
+}
+.login {
+    position: absolute;
+    top: 10px;
+    left: 1300px;
+}
+#bin {
+    position: absolute;
+    top: 100px;
+    left: 1300px;
+    height: 150px;
+    width: 200px;
+    background-color: #d3d3d3;
+}
+#cart {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    left: 32px;
+}
+
+#addToCart {
+    position: relative;
+    top: -296px;
+    left: 859px;
+    width: 140px;
+    height: 50px;
+    border: 0px;
+    background-color: cornsilk;
+}
+#inCart {
+    font-size: 28px;
+    position: relative;
+    top: -132px;
+    left: 77px;
+    color: darkgreen;
+}
+#binList {
+    position: absolute;
+    top: 250px;
+    left: 1300px;
+    height: 800px;
+    width: 198px;
+    border: solid 1px;
+    color: lightcoral;
 }
 
