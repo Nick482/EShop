@@ -16,7 +16,7 @@ define(function(require){
         },
 
         events: {
-            "click #bin" : "openBin"
+            "click #bin" : "clickBin"
         },
 
         constructor: function(data){
@@ -28,8 +28,8 @@ define(function(require){
             this.setElement(this.el());
         },
 
-        openBin: function(event){
-            this.trigger("openBin", this, event)
+        clickBin: function(event){
+            this.trigger("clickBin", this, event)
         },
 
         update: function(options){
