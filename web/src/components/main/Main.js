@@ -10,7 +10,10 @@ define(function(require){
         ItemCollection = require('components/itemCollection/ItemCollection'),
         itemTemplate = require('text!components/main/template/itemTemplate.htm'),
         itemModel = require('components/main/model/itemModel'),
-        Selected = require('components/selected/Selected');
+        Selected = require('components/selected/Selected'),
+        UserModel = require('components/main/model/userModel'),
+        Bin = require('components/bin/Bin'),
+        Login = require('components/login/Login');
 
         require('jquery.ui');
 
@@ -19,6 +22,9 @@ define(function(require){
         el: mainTemplate,
 
     initialize: function(){
+    this.cartList = "";
+    this.cartData = this.cartList.split(" ").shift.length;
+    this.model = new UserModel();
     this.searchCond = {};
     this.logo = new Logo();
     this.search = new Search();
@@ -28,6 +34,8 @@ define(function(require){
             itemTemplate: itemTemplate,
             itemAdditionalCssClass: "gridItem"
         });
+    this.login = new Login();
+    this.bin = new Bin({"length": this.cartData});
     this.render();
     this.initEvents();
     },
@@ -73,10 +81,38 @@ define(function(require){
                 self.selected = new Selected(data);
                 $('#selectedItem').hide();
                 $('#selectedItem').toggle("slide", { direction: "right" }, 1000);
+                self.listenTo(self.selected, "addToCart", function(event){
+                    var code = event.options.code;
+                    self.cartList = self.cartList + code + " ";
+                    self.model.set("items", self.cartList);
+                    self.cartData += 1;
+                    self.bin.update({length: self.cartData});
+                    console.log(self.cartData);
+                    console.log(self.cartList)
+                });
                 self.listenTo(self.selected, "backToSearch", function(){
                     $('#selectedItem').toggle("slide", { direction: "right" }, 1000);
                     $('.itemsCollection').animate({width: 'toggle'}, 1000);
                 })
+            })
+        });
+        this.listenTo(this.login, "Change", function(event){
+                var changed = event.currentTarget;
+                var value = $(event.currentTarget).val();
+                this.model.set(changed.id, value);
+        });
+        this.listenTo(this.login, "Login", function(){
+            $.post("/users/login", this.model.toJSON()).statusCode({
+                256: function(data){
+                    self.model.set(data);
+                    self.login.loggedIn();
+                },
+                257: function(data){
+                    alert(data)
+                },
+                258: function(data){
+                    alert(data)
+                }
             })
         });
     },
@@ -85,6 +121,8 @@ define(function(require){
         this.$el.append(this.logo.render());
         this.$el.append(this.search.render());
         this.$el.append(this.menu.render());
+        this.$el.append(this.login.render());
+        this.$el.append(this.bin.render());
         this.$el.append(this.itemCollection.render().$el);
     }
     });
