@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     login: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING,
-    items: DataTypes.ARRAY(DataTypes.DECIMAL)
+    items: DataTypes.STRING
   },
       {
     classMethods: {
