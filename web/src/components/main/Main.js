@@ -85,7 +85,7 @@ define(function(require){
                     var code = event.options.code;
                     self.cartList = self.cartList + code + " ";
                     self.model.set("items", self.cartList);
-                    self.cartData += 1;
+                    self.cartData = self.cartList.split(" ").length - 1;
                     self.bin.update({length: self.cartData});
                     console.log(self.cartData);
                     console.log(self.cartList)
