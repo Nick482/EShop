@@ -32,7 +32,11 @@ define(function(require){
             this.trigger("openBin", this, event)
         },
 
-
+        update: function(options){
+            this.$el.remove();
+            this.$el.html(_.template(binTemplate)({options: options}));
+            $('#container').append(this.$el);
+        },
 
         render: function(){
             this.$el.html(_.template(binTemplate)({options: this.options}));
