@@ -15,8 +15,7 @@ define(function(require){
     var ItemCollection = Backbone.View.extend({
 
         events: {
-//            "click .item": "_onItemEvent",
-            "click .item": "clicked",
+            "click .item": "_onItemEvent",
             "dblclick .item": "_onItemEvent",
             "mouseenter .item": "_onItemEvent",
             "mouseleave .item": "_onItemEvent"
@@ -146,7 +145,7 @@ define(function(require){
 
         _getItemId: function(e){
             var target = $(e.target);
-            var itemId = target.parent("div[item-id]").attr("item-id") || target.attr("item-id");
+            var itemId = target.parents("div[item-id]").attr("item-id") || target.attr("item-id");
 
             return itemId;
         },
