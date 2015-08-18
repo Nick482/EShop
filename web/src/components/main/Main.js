@@ -9,11 +9,13 @@ define(function(require){
         Menu  = require('components/menu/MainMenu'),
         ItemCollection = require('components/itemCollection/ItemCollection'),
         itemTemplate = require('text!components/main/template/itemTemplate.htm'),
+        binItemTemplate = require('text!components/bin/template/binItemTemplate.htm'),
         itemModel = require('components/main/model/itemModel'),
         Selected = require('components/selected/Selected'),
         UserModel = require('components/main/model/userModel'),
         Bin = require('components/bin/Bin'),
         BinPage = require('components/bin/BinPage'),
+        MenuCover = require('components/menu/MenuCover'),
         Login = require('components/login/Login');
 
         require('jquery.ui');
@@ -28,6 +30,7 @@ define(function(require){
     this.logo = new Logo();
     this.search = new Search();
     this.menu = new Menu();
+    this.menuCover = new MenuCover();
     this.selected = new Selected();
     this.itemCollection = new ItemCollection({
             model: itemModel,
@@ -35,10 +38,10 @@ define(function(require){
             itemAdditionalCssClass: "gridItem"
     });
     this.login = new Login();
-    this.bin = new Bin({"length": this.cartData});
+    this.bin = new Bin({"length": 0});
     this.binPage = new BinPage({
         model: itemModel,
-        itemTemplate: itemTemplate
+        itemTemplate: binItemTemplate
     });
     this.render();
     this.initEvents();
@@ -69,7 +72,7 @@ define(function(require){
             this.searchCond.nameCond = event.target.value;
         });
         self.listenTo(self.selected, "addToCart", function(model){
-            self.binPage.addItem(model);
+            self.binPage.addItem(model.model);
             self.bin.update({length: self.binPage.getItemsLength()});
         });
         self.listenTo(self.selected, "backToSearch", function(){
@@ -112,6 +115,7 @@ define(function(require){
         this.$el.append(this.menu.render());
         this.$el.append(this.login.render());
         this.$el.append(this.bin.render());
+        this.$el.append(this.menuCover.render());
         this.$el.append(this.binPage.render());
         this.$el.append(this.itemCollection.render().$el);
     }
