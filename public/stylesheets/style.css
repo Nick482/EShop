@@ -41,10 +41,6 @@
     border: solid;
     border-color: red;
 }
-#menu p {
-    margin-left: 43%;
-    margin-top: 10%;
-}
 .itemsCollection {
     position: absolute;
     top: 320px;
@@ -174,4 +170,29 @@ img#pic {
     border: solid 1px;
     color: lightcoral;
 }
-
+.pc, .furniture, .cellphones, .houseApp {
+    display: inline-table;
+    width: 250px;
+    height: 256px;
+    margin: -2px;
+    text-align: center;
+}
+.pcList, .furnitureList, .cellphonesList, .houseAppList {
+    font-size: 15px;
+    color: lightblue;
+    padding-bottom: 4px;
+    border: 1px solid lavender;
+}
+.cover {
+    width: 250px;
+    margin: -2px;
+    padding: 0;
+    background-color: #ffffff;
+    height: 256px;
+    border: 1px solid black;
+}
+.covers {
+    position: fixed;
+    top: 11px;
+    left: 281px;
+}
