@@ -17,7 +17,7 @@ define(function(require){
     initialize: function(options){
         this.binCollection = new ItemCollection({
             model: options.model,
-            template: binItemTemplate,
+            itemTemplate: binItemTemplate,
             items: options.data
             });
         this.render();
