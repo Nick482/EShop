@@ -16,7 +16,7 @@ define(function(require){
         },
 
         events: {
-            "click #bin" : "clickBin"
+            "click" : "clickBin"
         },
 
         constructor: function(data){
@@ -33,9 +33,8 @@ define(function(require){
         },
 
         update: function(options){
-            this.$el.remove();
+            this.$el.empty();
             this.$el.html(_.template(binTemplate)({options: options}));
-            $('#container').append(this.$el);
         },
 
         render: function(){
