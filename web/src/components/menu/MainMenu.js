@@ -4,23 +4,35 @@
 define(function(require){
    var Backbone = require("backbone"),
        $ = require("jquery"),
-       menuTemplate = require("text!./template/menuTemplate.htm");
+       _ = require('underscore'),
+       menuTemplate = require("text!./template/menuTemplate.htm"),
+       MenuModel = require('components/main/model/MenuModel');
 
    var MainMenu = Backbone.View.extend({
 
        el: menuTemplate,
 
-   initialize: function(){
-       this.render();
-       this.initEvents();
-   },
-   initEvents: function(){
 
+       initialize: function () {
+           this.menuModel = new MenuModel().toJSON();
+           this.render();
+       },
 
-   },
-   render: function(){
-   $('#container').append(this.$el);
-   }
+       render: function () {
+           $('#container').append(this.$el);
+           _.each(this.menuModel, function(Group, i) {
+               _.each(Group, function (subGroup) {
+                   $("." + i).append("<div  data-category='" + subGroup + "'   class='"+ i +"List' id ='" + subGroup + "'>"+ subGroup +" </div>")
+               });
+           });
+//           _.each(this.$el.children(), function (child) {
+//               _.each(menuModel, function (Group, i) {
+//                       _.each(Group, function (subGroup) {
+//                           $(child).append("<div class='" + subGroup + "'></div>")
+//                       })
+//})
+//           });
+       }
 });
     return MainMenu;
 });
