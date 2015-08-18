@@ -132,6 +132,7 @@ img#pic {
     position: absolute;
     top: 10px;
     left: 1300px;
+    width: 50px;
 }
 #bin {
     position: absolute;
