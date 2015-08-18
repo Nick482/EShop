@@ -13,6 +13,7 @@ define(function(require){
         Selected = require('components/selected/Selected'),
         UserModel = require('components/main/model/userModel'),
         Bin = require('components/bin/Bin'),
+        BinPage = require('components/bin/BinPage'),
         Login = require('components/login/Login');
 
         require('jquery.ui');
@@ -22,20 +23,23 @@ define(function(require){
         el: mainTemplate,
 
     initialize: function(){
-    this.cartList = "";
-    this.cartData = this.cartList.split(" ").shift.length;
     this.model = new UserModel();
     this.searchCond = {};
     this.logo = new Logo();
     this.search = new Search();
     this.menu = new Menu();
+    this.selected = new Selected();
     this.itemCollection = new ItemCollection({
             model: itemModel,
             itemTemplate: itemTemplate,
             itemAdditionalCssClass: "gridItem"
-        });
+    });
     this.login = new Login();
     this.bin = new Bin({"length": this.cartData});
+    this.binPage = new BinPage({
+        model: itemModel,
+        itemTemplate: itemTemplate
+    });
     this.render();
     this.initEvents();
     },
@@ -55,7 +59,6 @@ define(function(require){
         this.listenTo(this.search, "click", function(){
             $.post("/search", this.searchCond).statusCode({
                 256: function(data){
-                    console.log(data);
                     self.itemCollection.resetCollection(data);
                     self.itemCollection.render();
                     }
@@ -65,43 +68,29 @@ define(function(require){
         this.listenTo(this.search, "keyup", function(){
             this.searchCond.nameCond = event.target.value;
         });
-        this.listenTo(this.itemCollection, "clicked", function(){
-            var id = "";
-            if (event.target.parentElement.id){
-                id = event.target.parentElement.id
-            }
-            else {
-                id = event.target.id
-        }
-            $.post("/selection", {id : id}, function(data){
-                if($("#selectedItem")){
-                    $("#selectedItem").remove();
-                }
-                $('.itemsCollection').animate({width: 'toggle'}, 1000);
-                self.selected = new Selected(data);
-                $('#selectedItem').hide();
-                $('#selectedItem').toggle("slide", { direction: "right" }, 1000);
-                self.listenTo(self.selected, "addToCart", function(event){
-                    var code = event.options.code;
-                    self.cartList = self.cartList + code + " ";
-                    self.model.set("items", self.cartList);
-                    self.cartData = self.cartList.split(" ").length - 1;
-                    self.bin.update({length: self.cartData});
-                    console.log(self.cartData);
-                    console.log(self.cartList)
-                });
-                self.listenTo(self.selected, "backToSearch", function(){
-                    $('#selectedItem').toggle("slide", { direction: "right" }, 1000);
+        self.listenTo(self.selected, "addToCart", function(model){
+            self.binPage.addItem(model);
+            self.bin.update({length: self.binPage.getItemsLength()});
+        });
+        self.listenTo(self.selected, "backToSearch", function(){
+            self.selected.$el.toggle("slide", { direction: "right" }, 1000);
+            $('.itemsCollection').animate({width: 'toggle'}, 1000);
+        });
+        this.listenTo(this.itemCollection, "item:selected", function(itemView, model){
+            console.log(arguments);
+                    self.selected.$el.hide();
                     $('.itemsCollection').animate({width: 'toggle'}, 1000);
-                })
-            })
+                    self.selected.setModelData(model.toJSON());
+                    self.selected.$el.hide();
+                    self.selected.$el.toggle("slide", { direction: "right" }, 1000);
+            });
+        this.listenTo(this.bin, "clickBin", function(event){
+            $('#binList').toggle("slow");
         });
-        this.listenTo(this.login, "Change", function(event){
-                var changed = event.currentTarget;
-                var value = $(event.currentTarget).val();
-                this.model.set(changed.id, value);
+        this.listenTo(this.login, "login:change", function(changed){
+                this.model.set(changed);
         });
-        this.listenTo(this.login, "Login", function(){
+        this.listenTo(this.login, "login", function(){
             $.post("/users/login", this.model.toJSON()).statusCode({
                 256: function(data){
                     self.model.set(data);
@@ -123,6 +112,7 @@ define(function(require){
         this.$el.append(this.menu.render());
         this.$el.append(this.login.render());
         this.$el.append(this.bin.render());
+        this.$el.append(this.binPage.render());
         this.$el.append(this.itemCollection.render().$el);
     }
     });
