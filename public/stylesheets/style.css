@@ -191,8 +191,9 @@ img#pic {
     height: 256px;
     border: 1px solid black;
 }
+
 .covers {
-    position: fixed;
+    position: absolute;
     top: 11px;
     left: 281px;
 }
