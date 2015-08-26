@@ -12,7 +12,8 @@ define(function(require){
         el: menuCoverTemplate,
 
         events: {
-            "click .cover": "lift"
+            "mouseenter .cover": "lift",
+            "mouseleave": "lower"
         },
 
         initialize: function () {
@@ -20,7 +21,11 @@ define(function(require){
         },
 
         lift: function(event){
-            $(event.target).toggle("height")
+            $(event.target).css("visibility", "hidden");
+            $(event.target).siblings().css("visibility", "visible")
+        },
+        lower: function(event){
+            $(event.target).children().css("visibility", "visible")
         },
 
         render: function () {
