@@ -11,6 +11,9 @@
     width: 256px;
     height: 256px;
 }
+#logo {
+    display: inline-block;
+}
 .search {
     width: 256px;
 }
