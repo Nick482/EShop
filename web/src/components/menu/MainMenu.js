@@ -12,17 +12,25 @@ define(function(require){
 
        el: menuTemplate,
 
+       events: {
+           "click .subCategory": "click"
+       },
+
 
        initialize: function () {
            this.menuModel = new MenuModel().toJSON();
            this.render();
        },
 
+       click: function(){
+           console.log("triggered")
+       },
+
        render: function () {
            $('#container').append(this.$el);
            _.each(this.menuModel, function(Group, i) {
                _.each(Group, function (subGroup) {
-                   $("." + i).append("<div  data-category='" + subGroup + "'   class='"+ i +"List' id ='" + subGroup + "'>"+ subGroup +" </div>")
+                   $("." + i).append("<div  data-category='" + subGroup + "'   class='"+ i +"List subCategory' id ='" + subGroup + "'>"+ subGroup +" </div>")
                });
            });
 //           _.each(this.$el.children(), function (child) {
