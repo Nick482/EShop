@@ -12,8 +12,7 @@ define(function(require){
         el: menuCoverTemplate,
 
         events: {
-            "mouseenter .cover": "lift",
-            "mouseleave": "lower"
+            "mouseenter .cover": "lift"
         },
 
         initialize: function () {
@@ -21,12 +20,13 @@ define(function(require){
         },
 
         lift: function(event){
-            $(event.target).css("visibility", "hidden");
-            $(event.target).siblings().css("visibility", "visible")
+            $(event.target).css("visibility", "hidden").zIndex(-1);
+            this.$el.css("visibility", "hidden");
+            $(event.target).siblings().css("visibility", "visible");
         },
-        lower: function(event){
-            $(event.target).children().css("visibility", "visible")
-        },
+//        lower: function(event){
+//            $(event.target).css("visibility", "visible").zIndex(1)
+//        },
 
         render: function () {
             $('#container').append(this.$el);
