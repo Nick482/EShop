@@ -22,8 +22,8 @@ define(function(require){
            this.render();
        },
 
-       click: function(){
-           console.log("triggered")
+       click: function(event){
+           this.trigger("menuClick", event);
        },
 
        render: function () {
