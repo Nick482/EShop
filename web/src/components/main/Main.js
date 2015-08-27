@@ -68,6 +68,22 @@ define(function(require){
                 }
             )
         });
+        this.listenTo(this.menu, "menuClick", function(event){
+                var menuCondition = {
+                    subCond: $(event.target).data("category")
+                };
+                console.log(menuCondition);
+                $.post('/menuPick', menuCondition).statusCode({
+                    246: function(data){
+                        alert(data)
+                    },
+                    247: function(data){
+                        self.itemCollection.resetCollection(data);
+                        self.itemCollection.render();
+                    }
+                })
+            }
+        );
         this.listenTo(this.search, "keyup", function(){
             this.searchCond.nameCond = event.target.value;
         });
