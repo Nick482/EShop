@@ -15,6 +15,21 @@ router.post('/search', function(req, res){
 
 });
 
+router.post('/menuPick', function(req, res){
+    Item.findAll({where: {subgroup: req.body.subCond}}).then(function(items){
+        if(!items){
+            res.status(246).send("Error")
+        }
+        else {
+            res.status(247).send(items)
+        }
+    })
+
+
+
+
+});
+
 router.get('/admin', function(req, res){
    res.render('admin', {title: 'Merchandise addition'});
 });
