@@ -5,7 +5,8 @@ define(function(require) {
     var Backbone = require('backbone'),
         _ = require('underscore'),
         addTemplate = require('text!components/add/template/addTemplate.htm'),
-        ItemModel = require('components/main/model/itemModel');
+        ItemModel = require('components/main/model/itemModel'),
+		routesEnum = require('components/enum/routesEnum');
 
     var Add = Backbone.View.extend({
         el: addTemplate,
@@ -17,34 +18,48 @@ define(function(require) {
         },
 
         initialize: function(){
+			this.model = new ItemModel();
             this.render();
-        this.model = new ItemModel();
+			
+			this.$inputs = this.$el.find('input');
+			this.$message = this.$el.find('p.message');
         },
+		
         change: function(evt) {
-            var changed = evt.currentTarget;
-            var value = $(evt.currentTarget).val();
+            var changed = evt.currentTarget,
+            	value = $(evt.currentTarget).val();
+			
             this.model.set(changed.id, value);
         },
+		
         upload: function(){
             var self = this;
-            var message = $('p.message');
-            var url = "http://localhost:3000/add";
-            $.post(url, this.model.toJSON()).statusCode({
+			
+            $.post(routesEnum.ADMIN_ADD_NEW_PRODUCT, this.model.toJSON()).statusCode({
                 223: function(data) {
-                    message.removeAttr('hidden').text(data).css("color", "blue");
-                    setTimeout(function(){message.prop('hidden', true)}, 3000);
-                    $('input').val('');
+					
+                    self.$message.removeAttr('hidden').text(data).css("color", "blue");
+					self.$message.hide(3000);
+					
+                    self.$inputs.val('');
+					
                     self.model.clear().set(self.model.defaults);
+					
                 },
+				
                 224: function(data){
-                    message.removeAttr('hidden').text(data).css("color", "red");
-                    setTimeout(function(){message.prop('hidden', true)}, 3000);
-                    }
+                    self.$message.removeAttr('hidden').text(data).css("color", "red");
+                    self.$message.hide(3000);
+                }
+				
             })
         },
+		
         render: function(){
-        $('body').append(this.$el)
+        	$('body').append(this.$el);
         }
+		
     });
+	
     return Add;
 });
