@@ -17,6 +17,7 @@ define(function(require){
         initEvents: function(){
             (this.$el).find("img#mainLogo").on("click", function () {
                 window.location = "http://localhost:3000"
+                // console.log("Rerouted")
             })
         },
         render: function(){
