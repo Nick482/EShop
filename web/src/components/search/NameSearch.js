@@ -9,13 +9,23 @@ define(function(require){
     var NameSearch = Backbone.View.extend({
 
         el: nameTemplate,
-
-    initialize: function () {
-        this.render();
-    },
-    render: function(){
-        $('#name').append(this.$el)
-    }
-});
+		
+		events: {
+			"keyup": "_onKeyUp"
+		},
+		
+		initialize: function() {
+			this.nameCondition = "";
+		},
+		
+		_onKeyUp: function(event) {
+			this.nameCondition = $(event.target).val();
+		},
+		
+		render: function(){
+			return this;
+		}
+	});
+	
     return NameSearch;
 });
