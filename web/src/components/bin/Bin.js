@@ -5,42 +5,40 @@ define(function(require){
         $ = require('jquery'),
         binTemplate = require("text!./template/binTemplate.htm");
 
-
-    var Selected = Backbone.View.extend({
-
-        el: function(){
-            var self = this;
-            return	_.template("<div id='bin'></div>")({
-                options: self.options
-            });
-        },
+    var Bin = Backbone.View.extend({
+		
+		id: "bin",
 
         events: {
-            "click" : "clickBin"
+            "click" : "_onClick"
         },
 
-        constructor: function(data){
-            this.options = data;
-            this.initialize();
+        constructor: function(){
+            this.items = [];
+            
+			Backbone.View.apply(this, arguments);
         },
 
-        initialize: function () {
-            this.setElement(this.el());
+        _onClick: function(){
+            this.trigger("click:bin");
         },
 
-        clickBin: function(event){
-            this.trigger("clickBin", this, event)
-        },
-
-        update: function(options){
+        update: function(items){
             this.$el.empty();
-            this.$el.html(_.template(binTemplate)({options: options}));
+            this.$el.html(_.template(binTemplate)({
+				items: items
+			}));
         },
 
         render: function(){
-            this.$el.html(_.template(binTemplate)({options: this.options}));
-            $('#container').append(this.$el);
+            this.$el.html(_.template(binTemplate)({
+				items: this.items
+			}));
+			
+            return this;
         }
     });
-    return Selected;
+	
+    return Bin;
+	
 });
