@@ -5,42 +5,36 @@ define(function(require){
    var Backbone = require("backbone"),
        $ = require("jquery"),
        _ = require('underscore'),
+	   
+	   eventBus = require('components/eventBus'),
        menuTemplate = require("text!./template/menuTemplate.htm"),
        MenuModel = require('components/main/model/MenuModel');
 
    var MainMenu = Backbone.View.extend({
 
-       el: menuTemplate,
+       el: function() {
+		   return _.template(menuTemplate)({
+			   menuModel: new MenuModel().toJSON()
+		   });
+	   },
 
        events: {
-           "click .subCategory": "click"
+           "click .subCategory": "_onSubCategoryClick"
        },
 
-
-       initialize: function () {
-           this.menuModel = new MenuModel().toJSON();
-           this.render();
-       },
-
-       click: function(event){
-           this.trigger("menuClick", event);
+       _onSubCategoryClick: function(event){
+		   var searchCondition = $(event.target).data("category");
+		   
+           eventBus.trigger("search:subCategory", {
+			   subCond: searchCondition
+		   });
        },
 
        render: function () {
-           $('#container').append(this.$el);
-           _.each(this.menuModel, function(Group, i) {
-               _.each(Group, function (subGroup) {
-                   $("." + i).append("<div  data-category='" + subGroup + "'   class='"+ i +"List subCategory' id ='" + subGroup + "'>"+ subGroup +" </div>")
-               });
-           });
-//           _.each(this.$el.children(), function (child) {
-//               _.each(menuModel, function (Group, i) {
-//                       _.each(Group, function (subGroup) {
-//                           $(child).append("<div class='" + subGroup + "'></div>")
-//                       })
-//})
-//           });
+		   return this;
        }
-});
+	   
+   	});
+	
     return MainMenu;
 });

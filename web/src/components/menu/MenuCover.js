@@ -15,22 +15,18 @@ define(function(require){
             "mouseenter .cover": "lift"
         },
 
-        initialize: function () {
-            this.render();
-        },
-
         lift: function(event){
-            $(event.target).css("visibility", "hidden").zIndex(-1);
+			var cover = $(event.target);
+			
+            cover.css("visibility", "hidden").zIndex(-1);
             this.$el.css("visibility", "hidden");
-            $(event.target).siblings().css("visibility", "visible");
+            cover.siblings().css("visibility", "visible");
         },
-//        lower: function(event){
-//            $(event.target).css("visibility", "visible").zIndex(1)
-//        },
 
         render: function () {
-            $('#container').append(this.$el);
+            return this;
         }
     });
+	
     return MenuCover;
 });
