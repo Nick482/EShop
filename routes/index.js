@@ -9,13 +9,13 @@ router.get('/', function(req, res) {
 });
 
 router.post('/search', function(req, res){
-    Item.findAll({where: ["name like ?", '%' + req.body.nameCond + '%']}).then(function(item){
+    Item.findAll({where: ["name like ?", '%' + req.body.name + '%']}).then(function(item){
         res.status(256).send(item)
     });
 
 });
 
-router.post('/menuPick', function(req, res){
+router.post('/search/category', function(req, res){
     Item.findAll({where: {subgroup: req.body.subCond}}).then(function(items){
         if(!items){
             res.status(246).send("Error")
