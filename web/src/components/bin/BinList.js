@@ -12,7 +12,7 @@ define(function(require) {
 		id: "binList",
 
 		events: {
-			"click .remove": "remove"
+			"click .delete": "remove"
 		},
 
 		initialize: function(options){
@@ -20,6 +20,7 @@ define(function(require) {
 			this.binCollection = new ItemCollection({
 				model: options.model,
 				itemTemplate: binItemTemplate,
+                itemAdditionalCssClass: "binItem",
 				items: options.data
 			 });
 		},
@@ -33,7 +34,10 @@ define(function(require) {
 		},
 
 		remove: function(event){
-			this.trigger("remove", this, event)
+			this.trigger("remove", this, event);
+            console.log($(event.target).parent());
+
+
 		},
 		
 		toggle: function() {
@@ -46,6 +50,7 @@ define(function(require) {
 
 		render: function(){
 			this.$el.append(this.binCollection.render().$el);
+            this.$el.hide();
 			
 			return this;
 		}
