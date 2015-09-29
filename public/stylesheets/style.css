@@ -1,7 +1,4 @@
 #search {
-    border: 2px;
-    border: solid;
-    color: mediumblue;
     margin-top: 20px;
     margin-right: 0;
     width: 256px;
@@ -41,15 +38,11 @@
     left: 280px;
     height: 256px;
     width: 1000px;
-    border: solid;
-    border-color: red;
 }
-.itemsCollection {
+.itemGrid {
     position: absolute;
     top: 320px;
     left: 280px;
-    border: solid;
-    border-color: lime;
     width: 1000px;
     background-color: #ffffff;
 }
@@ -79,8 +72,6 @@ img#pic {
     position: absolute;
     top: 320px;
     left: 280px;
-    border: solid;
-    border-color: lime;
     width: 1000px;
     background-color: #ffffff;
     height: 400px;
@@ -140,6 +131,7 @@ img#pic {
     height: 150px;
     width: 200px;
     background-color: #d3d3d3;
+    border-radius: 28px;
 }
 #cart {
     height: 150px;
@@ -168,7 +160,7 @@ img#pic {
     position: absolute;
     top: 250px;
     left: 1300px;
-    height: 800px;
+    height: 600px;
     width: 198px;
     border: solid 1px;
     color: lightcoral;
@@ -184,7 +176,6 @@ img#pic {
     font-size: 15px;
     color: lightblue;
     padding-bottom: 4px;
-    border: 1px solid lavender;
 }
 .cover {
     width: 250px;
@@ -192,11 +183,45 @@ img#pic {
     padding: 0;
     background-color: #ffffff;
     height: 256px;
-    border: 1px solid black;
 }
 
 .covers {
     position: absolute;
     top: 11px;
     left: 281px;
+}
+
+.binItems {
+    width: 198px;
+    height: 70px;
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+}
+#binFullName {
+    position: relative;
+    top: -84px;
+    left: 86px;
+    color: black;
+}
+
+#binItemPrice {
+    position: relative;
+    top: -84px;
+    left: 86px;
+    color: black;
+    font-size: 18px;
+}
+button.delete {
+    border: 0;
+    padding: 4px;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom, green, lime);
+    position: relative;
+    top: -124px;
+    left: 125px;
+}
+
+#binItemPic {
+    width: 70px;
+    height: 70px;
 }
