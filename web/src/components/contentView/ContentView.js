@@ -22,7 +22,8 @@ define(function(require){
 			this.itemCollection = new ItemCollection({
 				model: ItemModel,
 				itemTemplate: itemTemplate,
-				itemAdditionalCssClass: "gridItem"
+				itemAdditionalCssClass: "gridItem",
+                additionalCssClass: "itemGrid"
 			});
 			
 			this.initEvents();
