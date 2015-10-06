@@ -8,6 +8,7 @@ require.config({
         css: 'lib/require-css/css',
         validation: "lib/backbone-validation/dist/backbone-validation-amd",
         jasmine: "lib/jasmine/lib/jasmine-core",
-        "jquery.ui": 'lib/jquery-ui/jquery-ui'
+        "jquery.ui": 'lib/jquery-ui/jquery-ui',
+        "sinon": 'lib/sinon/lib/sinon'
     }
 });
