@@ -5,7 +5,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         _ = require('underscore'),
         addTemplate = require('text!components/add/template/addTemplate.htm'),
-        ItemModel = require('components/main/model/itemModel'),
+        ItemModel = require('components/main/model/ItemModel'),
 		routesEnum = require('components/enum/routesEnum');
 
     var Add = Backbone.View.extend({
