@@ -1,9 +1,0 @@
- <div id="menu">
-	<% _.each(menuModel, function(subCategories, group) { %>
-		<div class="<%= group %>">
-			<% _.each(subCategories, function (subCategory, index) { %> 
-                   <div  data-category='<%= subCategory %>'   class="<%= group +'List subCategory' %>" id ='<%= subCategory %>'><%= subCategory %></div>
-             <% }); %>
-		</div>  
-    <% }); %>
-</div>

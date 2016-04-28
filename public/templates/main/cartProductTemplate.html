@@ -1,0 +1,6 @@
+<div class="cartProduct" id="<%= model.id || model._id %>">
+    <img src="<%= model.image %>">
+    <div id="name"><%=model.manufacturer%>  <%= model.name %></div>
+    <div id="price"> <%= model.price %> </div>
+    <button id="removeProduct" data-attr="<%= model.id || model._id%>">Remove</button>
+</div>

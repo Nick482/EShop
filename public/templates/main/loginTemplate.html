@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#logInModal">
+    <span class="glyphicon glyphicon-log-in"> LogIn</span>
+</button>
+
+<div class="modal fade" tabindex="-1" id="logInModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Log In</h4>
+            </div>
+            <div class="modal-body">
+                    <span><button class="role" data-attr="customer">Customer</button>
+                    <button class="role" data-attr="admin">Admin</button></span>
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" data-attr="email">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" data-attr="password">
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-success" id="confirm">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

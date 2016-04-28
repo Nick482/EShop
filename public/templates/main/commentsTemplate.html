@@ -1,0 +1,16 @@
+<div id="comments">
+    <% if(collection){collection.forEach(function(comment){%>
+    <div class="comment">
+        <div id="<%= comment.id %>">
+            <div id="commentUser"><%=comment.user%></div>
+            <div id="commentContent"><%=comment.content%></div>
+        </div>
+    </div>
+    <%})}%>
+    <button type="button" id="addComment">Add comment</button>
+    <div class="hidden" id="commentCreation">
+        <label for="inputArea"></label>
+        <textarea id="inputArea" cols="50" rows="4"></textarea>
+        <button type="button" id="confirmComment">OK</button>
+    </div>
+</div>

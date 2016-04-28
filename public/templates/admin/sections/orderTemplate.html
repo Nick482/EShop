@@ -1,0 +1,8 @@
+<tr class="order" id="<%= model._id %>">
+    <td id="orderID"><%= model._id %></td>
+    <td id="orderUserID"><%= model.userID %></td>
+    <td id="orderItems"><%= model.items %></td>
+    <td id="orderTotalPrice"><%= model.total %></td>
+    <td id="doneButton" data-attr="<%= model._id %>"><button>Mark as Done</button></td>
+    <td id="cancelButton" data-attr="<%= model._id %>"><button>Cancel</button></td>
+</tr>

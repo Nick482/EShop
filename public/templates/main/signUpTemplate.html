@@ -1,0 +1,35 @@
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#signUpModal">
+    <span class="glyphicon glyphicon-plus"> SignUp</span>
+</button>
+
+<div class="modal fade" tabindex="-1" id="signUpModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <label for="email">E-Mail:</label>
+                <input type="text" id="email" data-attr="email">
+                <label for="password">Password:</label>
+                <input type="password" id="password" data-attr="password">
+                <label for="name">Name:</label>
+                <input type="text" id="name" data-attr="name">
+                <label for="lastName">Last name:</label>
+                <input type="text" id="lastName" data-attr="lastName">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" data-attr="phone">
+                <div class="typeCheck">
+                    <p>Please, pick a desired type of verification:</p>
+                    <button type="button" class="verificationType" data-type="phone">Phone</button>
+                    <button type="button" class="verificationType" data-type="email">Email</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="confirmButton">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

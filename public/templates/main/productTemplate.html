@@ -1,0 +1,6 @@
+<div class="product">
+    <img class="productImage" src="<%= collection.get('image') %>">
+    <div class="productName"><%= collection.get('manufacturer') %> <%= collection.get('name') %></div>
+    <div class="price"><%= collection.get('price') %> $</div>
+    <button id="addToCart" data-attr="<%=collection.id%>">Add to cart</button>
+</div>

@@ -1,0 +1,10 @@
+<tr class="product" id="<%= model.name %>">
+    <td id="productImage"> <img src="<%= model.image %>"> </td>
+    <td id="productName"><%= model.name %></td>
+    <td id="productPrice"><%= model.price %></td>
+    <td id="productDesc"><%= model.desc %></td>
+    <td id="productQuantity"><%= model.quantity %></td>
+    <td id="productManufacturer"><%= model.manufacturer %></td>
+    <td id="editButton" data-attr="<%= model._id %>"><button>Edit</button></td>
+    <td id="deleteButton" data-attr="<%= model._id %>"><button>Delete</button></td>
+</tr>
